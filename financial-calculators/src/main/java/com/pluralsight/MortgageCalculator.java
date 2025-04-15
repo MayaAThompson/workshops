@@ -4,30 +4,13 @@ import java.util.*;
 
 public class MortgageCalculator {
 
-    static Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) {
 
-        System.out.println("What is your loan amount?");
-        System.out.print("Answer here: ");
-        String principalString = scanner.nextLine();
-        double principal = Double.parseDouble(principalString); //P
-        System.out.println();
+        double principal = messageAndDoubleResponse("What is your loan amount?");
 
-        System.out.println("What is your annual interest rate percentage?");
-        System.out.print("Answer here: ");
-        String interestString = scanner.nextLine();
-        double interestRate = Double.parseDouble(interestString);
-        double AnnualInterestRate = interestRate / 100; //r
-        double monthlyInterestRate = AnnualInterestRate / 12; //i
-        System.out.println();
+        double monthlyInterestRate = messageAndDoubleResponse("What is your interest rate percentage?") / 100 / 12;
 
-        System.out.println("What is your loan length? (in years)");
-        System.out.print("Answer here: ");
-        String loanLengthString = scanner.nextLine();
-        double loanLength = Double.parseDouble(loanLengthString); //y
-        double totalMonthlyPayments = loanLength * 12; //n
-        System.out.println();
+        double totalMonthlyPayments = messageAndDoubleResponse("What is your loan length (in years)") * 12;
 
         //   M=P×(i*(1+i)^n / ((1+i)^n)-1)
         double monthlyPayment = principal * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, totalMonthlyPayments) / (Math.pow(1 + monthlyInterestRate, totalMonthlyPayments) - 1));
@@ -35,8 +18,13 @@ public class MortgageCalculator {
 
         System.out.printf("Your monthly payment is: $%.2f", monthlyPayment);
         System.out.printf("\nYour total interest is: $%.2f", totalInterest);
+    }
 
-
+    static double messageAndDoubleResponse(String message) {
+        System.out.print(message + "\nenter here:");
+        Scanner scanner = new Scanner(System.in);
+        String response = scanner.nextLine();
+        return Double.parseDouble(response);
     }
 
 }
