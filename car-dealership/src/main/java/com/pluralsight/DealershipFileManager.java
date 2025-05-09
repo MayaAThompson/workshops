@@ -38,7 +38,7 @@ public class DealershipFileManager {
             BufferedWriter writer = new BufferedWriter(new FileWriter(INVENTORY_FILE));
             writer.write(dealerInfo);
             for (Vehicle vehicle : dealership.getAllVehicles()) {
-                String formattedVehicle = String.format("%d|%d|%s|%s|%s|%s|%d|%.2f",vehicle.getVehicleIdNumber(), vehicle.getYear(), vehicle.getMake(), vehicle.getModel(), vehicle.getVehicleType(), vehicle.getColor(), vehicle.getOdometer(), vehicle.getPrice());
+                String formattedVehicle = String.format("\n%d|%d|%s|%s|%s|%s|%d|%.2f",vehicle.getVehicleIdNumber(), vehicle.getYear(), vehicle.getMake(), vehicle.getModel(), vehicle.getVehicleType(), vehicle.getColor(), vehicle.getOdometer(), vehicle.getPrice());
                 writer.write(String.format(formattedVehicle));
             }
 

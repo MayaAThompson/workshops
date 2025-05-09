@@ -87,4 +87,7 @@ public class Vehicle {
     }
     //endregion
 
+    public String toFormattedString() {
+        return null;
+    }
 }
